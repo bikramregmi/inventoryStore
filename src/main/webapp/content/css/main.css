@@ -34,6 +34,19 @@ Development Ribbon
     pointer-events: none;
 }
 
+#mainView{
+    border-left-width: 0px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+
+}
+
 .ribbon a {
     border: 1px solid #faa;
     color: #fff;

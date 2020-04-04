@@ -14,6 +14,7 @@
         vm.cancel = cancel;
         vm.credentials = {};
         vm.login = login;
+        vm.showLoginButtion=null;
         vm.password = null;
         vm.register = register;
         vm.rememberMe = true;
@@ -33,6 +34,7 @@
         }
 
         function login (event) {
+            vm.showLoginButtion=true;
             event.preventDefault();
             Auth.login({
                 username: vm.username,
