@@ -49,7 +49,7 @@
                                         <ul id="navigation">
                                             <li ui-sref-active="active">
                                                 <a ui-sref="home" ng-click="vm.collapseNavbar()">
-                                                    <span class="glyphicon glyphicon-home"></span>
+                                                    <!--<span class="glyphicon glyphicon-home"></span>-->
                                                     <span class="hidden-sm"
                                                           data-translate="global.menu.home">Home</span>
                                                 </a>
@@ -57,7 +57,7 @@
                                             <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true">
                                                 <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
                                                  <span>
-                                                    <span class="glyphicon glyphicon-th-list"></span>
+                                                    <!--<span class="glyphicon glyphicon-th-list"></span>-->
                                                         <span class="hidden-sm"
                                                               data-translate="global.menu.entities.main">
                                                             Entities
@@ -73,7 +73,7 @@
                                                 <a class="dropdown-toggle" uib-dropdown-toggle href=""
                                                    id="account-menu">
                                                     <span>
-                                                        <span class="glyphicon glyphicon-user"></span>
+                                                        <!--<span class="glyphicon glyphicon-user"></span>-->
                                                             <span class="hidden-sm"
                                                                   data-translate="global.menu.account.main">
                                                                 Account
@@ -83,35 +83,35 @@
                                                 <ul class="submenu" uib-dropdown-menu>
                                                     <li ui-sref-active="active" ng-switch-when="true">
                                                         <a ui-sref="settings" ng-click="vm.collapseNavbar()">
-                                                            <span class="glyphicon glyphicon-wrench"></span>&nbsp;
+                                                            <!--<span class="glyphicon glyphicon-wrench"></span>&nbsp;-->
                                                             <span
                                                                 data-translate="global.menu.account.settings">Settings</span>
                                                         </a>
                                                     </li>
                                                     <li ui-sref-active="active" ng-switch-when="true">
                                                         <a ui-sref="password" ng-click="vm.collapseNavbar()">
-                                                            <span class="glyphicon glyphicon-lock"></span>&nbsp;
+                                                            <!--<span class="glyphicon glyphicon-lock"></span>&nbsp;-->
                                                             <span
                                                                 data-translate="global.menu.account.password">Password</span>
                                                         </a>
                                                     </li>
                                                     <li ui-sref-active="active" ng-switch-when="true">
                                                         <a href="" ng-click="vm.logout()" id="logout">
-                                                            <span class="glyphicon glyphicon-log-out"></span>&nbsp;
+                                                            <!--<span class="glyphicon glyphicon-log-out"></span>&nbsp;-->
                                                             <span
                                                                 data-translate="global.menu.account.logout">Sign out</span>
                                                         </a>
                                                     </li>
                                                     <li ui-sref-active="active" ng-switch-when="false">
                                                         <a href="" ng-click="vm.login()" id="login">
-                                                            <span class="glyphicon glyphicon-log-in"></span>&nbsp;
+                                                            <!--<span class="glyphicon glyphicon-log-in"></span>&nbsp;-->
                                                             <span
                                                                 data-translate="global.menu.account.login">Sign in</span>
                                                         </a>
                                                     </li>
                                                     <li ui-sref-active="active" ng-switch-when="false">
                                                         <a ui-sref="register" ng-click="vm.collapseNavbar()">
-                                                            <span class="glyphicon glyphicon-plus-sign"></span>&nbsp;
+                                                            <!--<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;-->
                                                             <span
                                                                 data-translate="global.menu.account.register">Register</span>
                                                         </a>
@@ -122,53 +122,53 @@
                                                 has-authority="ROLE_ADMIN">
                                                 <a class="dropdown-toggle" uib-dropdown-toggle href="" id="admin-menu">
                                                  <span>
-                                                    <span class="glyphicon glyphicon-tower"></span>
+                                                    <!--<span class="glyphicon glyphicon-tower"></span>-->
                                                         <span class="hidden-sm" data-translate="global.menu.admin.main">Administration</span>
                                                  </span>
                                                 </a>
                                                 <ul class="submenu" uib-dropdown-menu>
                                                     <li ui-sref-active="active" ng-switch-when="true">
                                                         <a ui-sref="user-management" ng-click="vm.collapseNavbar()">
-                                                            <span class="glyphicon glyphicon-user"></span>&nbsp;
+                                                            <!--<span class="glyphicon glyphicon-user"></span>&nbsp;-->
                                                             <span data-translate="global.menu.admin.userManagement">User management</span>
                                                         </a>
                                                     </li>
                                                     <li ui-sref-active="active" ng-switch-when="true">
                                                         <a ui-sref="jhi-metrics" ng-click="vm.collapseNavbar()">
-                                                            <span class="glyphicon glyphicon-dashboard"></span>&nbsp;
+                                                            <!--<span class="glyphicon glyphicon-dashboard"></span>&nbsp;-->
                                                             <span
                                                                 data-translate="global.menu.admin.metrics">Metrics</span>
                                                         </a>
                                                     </li>
                                                     <li ui-sref-active="active" ng-switch-when="true">
                                                         <a ui-sref="jhi-health" ng-click="vm.collapseNavbar()">
-                                                            <span class="glyphicon glyphicon-heart"></span>&nbsp;
+                                                            <!--<span class="glyphicon glyphicon-heart"></span>&nbsp;-->
                                                             <span
                                                                 data-translate="global.menu.admin.health">Health</span>
                                                         </a>
                                                     </li>
                                                     <li ui-sref-active="active" ng-switch-when="true">
                                                         <a ui-sref="jhi-configuration" ng-click="vm.collapseNavbar()">
-                                                            <span class="glyphicon glyphicon-list-alt"></span>&nbsp;
+                                                            <!--<span class="glyphicon glyphicon-list-alt"></span>&nbsp;-->
                                                             <span data-translate="global.menu.admin.configuration">Configuration</span>
                                                         </a>
                                                     </li>
                                                     <li ui-sref-active="active" ng-switch-when="true">
                                                         <a ui-sref="audits" ng-click="vm.collapseNavbar()">
-                                                            <span class="glyphicon glyphicon-bell"></span>&nbsp;
+                                                            <!--<span class="glyphicon glyphicon-bell"></span>&nbsp;-->
                                                             <span
                                                                 data-translate="global.menu.admin.audits">Audits</span>
                                                         </a>
                                                     </li>
                                                     <li ui-sref-active="active" ng-switch-when="true">
                                                         <a ui-sref="logs" ng-click="vm.collapseNavbar()">
-                                                            <span class="glyphicon glyphicon-tasks"></span>&nbsp;
+                                                            <!--<span class="glyphicon glyphicon-tasks"></span>&nbsp;-->
                                                             <span data-translate="global.menu.admin.logs">Logs</span>
                                                         </a>
                                                     </li>
                                                     <li ng-show="vm.swaggerEnabled" ui-sref-active="active">
                                                         <a ui-sref="docs" ng-click="vm.collapseNavbar()">
-                                                            <span class="glyphicon glyphicon-book"></span>&nbsp;
+                                                            <!--<span class="glyphicon glyphicon-book"></span>&nbsp;-->
                                                             <span data-translate="global.menu.admin.apidocs">API</span>
                                                         </a>
                                                     </li>
@@ -181,7 +181,7 @@
                                                 <a class="dropdown-toggle" uib-dropdown-toggle href=""
                                                    ng-if="languageVm.languages.length > 1">
                                                     <span>
-                                                        <span class="glyphicon glyphicon-flag"></span>
+                                                        <!--<span class="glyphicon glyphicon-flag"></span>-->
                                                             <span class="hidden-sm"
                                                                   data-translate="global.menu.language">Language</span>
                                                     </span>
