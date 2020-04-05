@@ -46,6 +46,10 @@ Development Ribbon
     padding-right: 0px;
 
 }
+.footer_top{
+    margin-top:50px;
+    padding-top:20px;
+}
 
 .ribbon a {
     border: 1px solid #faa;
