@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="smartWebApp.contact.detail.title">Contact</span> {{vm.contact.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="smartWebApp.contact.mobileNumber">Mobile Number</span></dt>
+        <dd>
+            <span>{{vm.contact.mobileNumber}}</span>
+        </dd>
+        <dt><span data-translate="smartWebApp.contact.landlineNumber">Landline Number</span></dt>
+        <dd>
+            <span>{{vm.contact.landlineNumber}}</span>
+        </dd>
+        <dt><span data-translate="smartWebApp.contact.alternateNumber">Alternate Number</span></dt>
+        <dd>
+            <span>{{vm.contact.alternateNumber}}</span>
+        </dd>
+        <dt><span data-translate="smartWebApp.contact.extraField">Extra Field</span></dt>
+        <dd>
+            <span>{{vm.contact.extraField}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="contact-detail.edit({id:vm.contact.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

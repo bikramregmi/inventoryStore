@@ -11,7 +11,7 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.1"
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5'
         classpath "net.ltgt.gradle:gradle-apt-plugin:0.9"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_version}"
         classpath "org.springframework.build.gradle:propdeps-plugin:0.0.7"
@@ -226,9 +226,9 @@ task cleanResources(type: Delete) {
     delete 'build/resources'
 }
 
-task wrapper(type: Wrapper) {
+/*task wrapper(type: Wrapper) {
     gradleVersion = '3.5'
-}
+}*/
 
 task stage(dependsOn: 'bootRepackage') {
 }

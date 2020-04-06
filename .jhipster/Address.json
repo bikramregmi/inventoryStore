@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "city",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "street",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "province",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "longitude",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "latitude",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "extraField",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20200406034921",
+    "dto": "mapstruct",
+    "service": "serviceImpl",
+    "entityTableName": "address",
+    "pagination": "pager"
+}

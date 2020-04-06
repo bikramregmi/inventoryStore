@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "mobileNumber",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "landlineNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "alternateNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "extraField",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20200406034218",
+    "dto": "mapstruct",
+    "service": "serviceImpl",
+    "entityTableName": "contact",
+    "pagination": "pager"
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity College.
+    -->
+    <changeSet id="20200406035421-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="address_id"
+                                 baseTableName="college"
+                                 constraintName="fk_college_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address"/>
+
+        <addForeignKeyConstraint baseColumnNames="contact_id"
+                                 baseTableName="college"
+                                 constraintName="fk_college_contact_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contact"/>
+
+        <addForeignKeyConstraint baseColumnNames="colleges_id"
+                                 baseTableName="college_program"
+                                 constraintName="fk_college_program_colleges_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="college"/>
+        <addForeignKeyConstraint baseColumnNames="programs_id"
+                                 baseTableName="college_program"
+                                 constraintName="fk_college_program_programs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="program"/>
+        
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,37 @@
+
+<div>
+    <h2><span data-translate="smartWebApp.program.detail.title">Program</span> {{vm.program.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="smartWebApp.program.image">Image</span></dt>
+        <dd>
+            <span>{{vm.program.image}}</span>
+        </dd>
+        <dt><span data-translate="smartWebApp.program.description">Description</span></dt>
+        <dd>
+            <span>{{vm.program.description}}</span>
+        </dd>
+        <dt><span data-translate="smartWebApp.program.name">Name</span></dt>
+        <dd>
+            <span>{{vm.program.name}}</span>
+        </dd>
+        <dt><span data-translate="smartWebApp.program.course">Course</span></dt>
+        <dd>
+            <span ng-repeat="course in vm.program.courses">
+                <a ui-sref="course-detail({id: course.id})">{{course.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="program-detail.edit({id:vm.program.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
