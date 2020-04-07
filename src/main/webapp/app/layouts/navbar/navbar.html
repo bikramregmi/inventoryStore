@@ -49,7 +49,6 @@
                                         <ul id="navigation">
                                             <li ui-sref-active="active">
                                                 <a ui-sref="home" ng-click="vm.collapseNavbar()">
-                                                    <!--<span class="glyphicon glyphicon-home"></span>-->
                                                     <span class="hidden-sm"
                                                           data-translate="global.menu.home">Home</span>
                                                 </a>
@@ -57,7 +56,6 @@
                                             <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true">
                                                 <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
                                                  <span>
-                                                    <!--<span class="glyphicon glyphicon-th-list"></span>-->
                                                         <span class="hidden-sm"
                                                               data-translate="global.menu.entities.main">
                                                             Entities
@@ -65,8 +63,42 @@
                                                 </span>
                                                 </a>
                                                 <ul class="submenu" uib-dropdown-menu>
-                                                    &lt;!&ndash; jhipster-needle-add-entity-to-menu - JHipster will add
-                                                    entities to the menu here &ndash;&gt;
+                                                    <li ui-sref-active="active">
+                                                        <a ui-sref="subject" ng-click="vm.collapseNavbar()">
+                                                            <span
+                                                                data-translate="global.menu.entities.subject">Subject</span>
+                                                        </a>
+                                                    </li>
+                                                    <li ui-sref-active="active">
+                                                        <a ui-sref="course" ng-click="vm.collapseNavbar()">
+                                                            <span
+                                                                data-translate="global.menu.entities.course">Course</span>
+                                                        </a>
+                                                    </li>
+                                                    <li ui-sref-active="active">
+                                                        <a ui-sref="program" ng-click="vm.collapseNavbar()">
+                                                            <span
+                                                                data-translate="global.menu.entities.program">Program</span>
+                                                        </a>
+                                                    </li>
+                                                    <li ui-sref-active="active">
+                                                        <a ui-sref="contact" ng-click="vm.collapseNavbar()">
+                                                            <span
+                                                                data-translate="global.menu.entities.contact">Contact</span>
+                                                        </a>
+                                                    </li>
+                                                    <li ui-sref-active="active">
+                                                        <a ui-sref="address" ng-click="vm.collapseNavbar()">
+                                                            <span
+                                                                data-translate="global.menu.entities.address">Address</span>
+                                                        </a>
+                                                    </li>
+                                                    <li ui-sref-active="active">
+                                                        <a ui-sref="college" ng-click="vm.collapseNavbar()">
+                                                            <span
+                                                                data-translate="global.menu.entities.college">College</span>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                             <li ng-class="{active: vm.$state.includes('account')}">
