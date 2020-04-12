@@ -4,10 +4,6 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span data-translate="smartWebApp.subject.subject_id">Subject Id</span></dt>
-        <dd>
-            <span>{{vm.subject.subject_id}}</span>
-        </dd>
         <dt><span data-translate="smartWebApp.subject.name">Name</span></dt>
         <dd>
             <span>{{vm.subject.name}}</span>
@@ -23,7 +19,7 @@
         <dt><span data-translate="smartWebApp.subject.course">Course</span></dt>
         <dd>
             <span ng-repeat="course in vm.subject.courses">
-                <a ui-sref="course-detail({id: course.id})">{{course.id}}</a>{{$last ? '' : ', '}}
+                <a ui-sref="course-detail({id: course.id})">{{course.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>

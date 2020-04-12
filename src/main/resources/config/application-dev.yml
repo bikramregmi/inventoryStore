@@ -34,7 +34,7 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/smartWeb?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://localhost:3306/smartWebApp?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
         password: TMKdbroot@123
         hikari:
@@ -74,6 +74,7 @@ spring:
 
 liquibase:
     contexts: dev
+    enabled: false
 
 # ===================================================================
 # To enable SSL, generate a certificate using:
@@ -93,7 +94,7 @@ liquibase:
 #        keyAlias: smartWeb
 # ===================================================================
 server:
-    port: 8080
+    port: 8081
 
 # ===================================================================
 # JHipster specific properties

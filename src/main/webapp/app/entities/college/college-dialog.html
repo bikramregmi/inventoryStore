@@ -40,19 +40,19 @@
 
         <div class="form-group">
             <label data-translate="smartWebApp.college.address" for="field_address">Address</label>
-            <select class="form-control" id="field_address" name="address" ng-model="vm.college.addressId" ng-options="address.id as address.id for address in vm.addresses"            >
+            <select class="form-control" id="field_address" name="address" ng-model="vm.college.addressId" ng-options="address.id as address.city for address in vm.addresses"            >
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="smartWebApp.college.contact" for="field_contact">Contact</label>
-            <select class="form-control" id="field_contact" name="contact" ng-model="vm.college.contactId" ng-options="contact.id as contact.id for contact in vm.contacts | orderBy:'id'">
+            <select class="form-control" id="field_contact" name="contact" ng-model="vm.college.contactId" ng-options="contact.id as contact.mobileNumber for contact in vm.contacts | orderBy:'id'">
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="smartWebApp.college.program" for="field_program">Program</label>
-            <select class="form-control" id="field_program" multiple name="program" ng-model="vm.college.programs" ng-options="program as program.id for program in vm.programs track by program.id"></select>
+            <select class="form-control" id="field_program" multiple name="program" ng-model="vm.college.programs" ng-options="program as program.name for program in vm.programs track by program.id"></select>
         </div>
     </div>
     <div class="modal-footer">

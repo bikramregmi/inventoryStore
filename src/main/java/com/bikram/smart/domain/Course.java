@@ -13,7 +13,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "course")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Course implements Serializable {
+public class Course extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,6 +26,9 @@ public class Course implements Serializable {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name="stream")
+    private String stream;
 
     @Column(name = "image")
     private String image;
@@ -64,6 +67,19 @@ public class Course implements Serializable {
         this.description = description;
     }
 
+    public String getStream() {
+        return stream;
+    }
+
+    public void setStream(String stream) {
+        this.stream = stream;
+    }
+
+    public Course stream(String stream) {
+        this.stream = stream;
+        return this;
+    }
+
     public String getImage() {
         return image;
     }
@@ -100,10 +116,11 @@ public class Course implements Serializable {
     @Override
     public String toString() {
         return "Course{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", image='" + getImage() + "'" +
-            "}";
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", description='" + description + '\'' +
+            ", stream='" + stream + '\'' +
+            ", image='" + image + '\'' +
+            '}';
     }
 }

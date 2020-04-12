@@ -46,6 +46,9 @@ public class CourseResourceIntTest {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
+    private static final String DEFAULT_STREAM = "AAAAAAAAAA";
+    private static final String UPDATED_STREAM = "BBBBBBBBBB";
+
     private static final String DEFAULT_IMAGE = "AAAAAAAAAA";
     private static final String UPDATED_IMAGE = "BBBBBBBBBB";
 
@@ -94,6 +97,7 @@ public class CourseResourceIntTest {
         Course course = new Course()
             .name(DEFAULT_NAME)
             .description(DEFAULT_DESCRIPTION)
+            .stream(DEFAULT_STREAM)
             .image(DEFAULT_IMAGE);
         return course;
     }
@@ -121,6 +125,7 @@ public class CourseResourceIntTest {
         Course testCourse = courseList.get(courseList.size() - 1);
         assertThat(testCourse.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCourse.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testCourse.getStream()).isEqualTo(DEFAULT_STREAM);
         assertThat(testCourse.getImage()).isEqualTo(DEFAULT_IMAGE);
     }
 
@@ -157,6 +162,7 @@ public class CourseResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(course.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].stream").value(hasItem(DEFAULT_STREAM.toString())))
             .andExpect(jsonPath("$.[*].image").value(hasItem(DEFAULT_IMAGE.toString())));
     }
 
@@ -173,6 +179,7 @@ public class CourseResourceIntTest {
             .andExpect(jsonPath("$.id").value(course.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.stream").value(DEFAULT_STREAM.toString()))
             .andExpect(jsonPath("$.image").value(DEFAULT_IMAGE.toString()));
     }
 
@@ -196,6 +203,7 @@ public class CourseResourceIntTest {
         updatedCourse
             .name(UPDATED_NAME)
             .description(UPDATED_DESCRIPTION)
+            .stream(UPDATED_STREAM)
             .image(UPDATED_IMAGE);
         CourseDTO courseDTO = courseMapper.toDto(updatedCourse);
 
@@ -210,6 +218,7 @@ public class CourseResourceIntTest {
         Course testCourse = courseList.get(courseList.size() - 1);
         assertThat(testCourse.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCourse.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testCourse.getStream()).isEqualTo(UPDATED_STREAM);
         assertThat(testCourse.getImage()).isEqualTo(UPDATED_IMAGE);
     }
 

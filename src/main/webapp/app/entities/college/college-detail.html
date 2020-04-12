@@ -22,16 +22,16 @@
         </dd>
         <dt><span data-translate="smartWebApp.college.address">Address</span></dt>
         <dd>
-            <a ui-sref="address-detail({id:vm.college.addressId})">{{vm.college.addressId}}</a>
+            <a ui-sref="address-detail({id:vm.college.addressId})">{{vm.college.addressName}}</a>
         </dd>
         <dt><span data-translate="smartWebApp.college.contact">Contact</span></dt>
         <dd>
-            <a ui-sref="contact-detail({id:vm.college.contactId})">{{vm.college.contactId}}</a>
+            <a ui-sref="contact-detail({id:vm.college.contactId})">{{vm.college.contactName}}</a>
         </dd>
         <dt><span data-translate="smartWebApp.college.program">Program</span></dt>
         <dd>
             <span ng-repeat="program in vm.college.programs">
-                <a ui-sref="program-detail({id: program.id})">{{program.id}}</a>{{$last ? '' : ', '}}
+                <a ui-sref="program-detail({id: program.id})">{{program.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>

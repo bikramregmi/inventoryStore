@@ -1,76 +1,3 @@
-
-<!--<header>
-    <div class="header-area ">
-        <div class="header-top_area">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="header_top_wrap d-flex justify-content-between align-items-center">
-                            <div class="text_wrap">
-                                <p><span>+880166 253 232</span> <span>info@domain.com</span></p>
-                            </div>
-                            <div class="text_wrap">
-                                <p><a href="#"> <i class="ti-user"></i>  Login</a> <a href="#">Register</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="sticky-header" class="main-header-area">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="header_wrap d-flex justify-content-between align-items-center">
-                            <div class="header_left">
-                                &lt;!&ndash;    <div class="logo">
-                                       <a href="index.html">
-                                           <img src="img/logo.png" alt="">
-                                       </a>
-                                   </div> &ndash;&gt;
-                            </div>
-                            <div class="header_right d-flex align-items-center">
-                                <div class="main-menu  d-none d-lg-block">
-                                    <nav>
-                                        <ul id="navigation">
-                                            <li><a  href="index.html">home</a></li>
-                                            <li><a href="Courses.html">Courses</a></li>
-                                            <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">blog</a></li>
-                                                    <li><a href="single-blog.html">single-blog</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="Event.html">Event</a></li>
-                                                    <li><a href="event_details.html">Event Details</a></li>
-                                                    <li><a href="Admissions.html">Admissions</a></li>
-                                                    <li><a href="elements.html">elements</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <div class="Appointment">
-                                    <div class="book_btn d-none d-lg-block">
-                                        <a data-scroll-nav='1' href="#">Apply NOw</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="mobile_menu d-block d-lg-none"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>-->
-<!-- header-end -->
-
 <!-- slider_area_start -->
 <div class="slider_area">
     <div class="slider_active owl-carousel">
@@ -185,56 +112,58 @@
             <div class="col-lg-12">
                 <nav class="custom_tabs text-center">
                     <div class="nav" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Graduate                                </a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Postgraduate </a>
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">PHD Scholarships</a>
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact2" role="tab" aria-controls="nav-contact" aria-selected="false">Training</a>
+                        <a ng-repeat="program in vm.programs" class="nav-item nav-link active" id="nav-home-tab"
+                           data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true" ng-init="vm.checkProgram(program.name)" ng-click="vm.checkProgram(program.name)"
+                           ng-if="$first">{{program.name}} </a>
+                        <a ng-repeat="program in vm.programs" class="nav-item nav-link" id="nav-profile-tab"
+                           data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-profile"
+                           aria-selected="false" ng-click="vm.checkProgram(program.name)" ng-if="!$first">{{program.name}} </a>
                     </div>
                 </nav>
             </div>
         </div>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single__program">
+                <div class="row" ng-repeat="program in vm.programs">
+                    <div class="col-lg-4 col-md-6" ng-repeat="course in program.courses">
+                        <div class="single__program" ng-if="program.name==vm.checkProgramName">
                             <div class="program_thumb">
                                 <img src="content/images//program/1.png" alt="">
                             </div>
                             <div class="program__content">
-                                <span>Agriculture</span>
-                                <h4>Chemical engneering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <span>{{course.stream}}</span>
+                                <h4>{{course.name}}</h4>
+                                <p>{{course.description}}</p>
                                 <a href="#" class="boxed-btn5">Apply NOw</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single__program">
-                            <div class="program_thumb">
-                                <img src="content/images/program/2.png" alt="">
+                    <!--        <div class="col-lg-4 col-md-6">
+                                <div class="single__program">
+                                    <div class="program_thumb">
+                                        <img src="content/images/program/2.png" alt="">
+                                    </div>
+                                    <div class="program__content">
+                                        <span>Agriculture</span>
+                                        <h4>Mechanical engneering</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                        <a href="#" class="boxed-btn5">Apply NOw</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="program__content">
-                                <span>Agriculture</span>
-                                <h4>Mechanical engneering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                                <a href="#" class="boxed-btn5">Apply NOw</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single__program">
-                            <div class="program_thumb">
-                                <img src="content/images/program/3.png" alt="">
-                            </div>
-                            <div class="program__content">
-                                <span>Agriculture</span>
-                                <h4>Bio engneering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                                <a href="#" class="boxed-btn5">Apply NOw</a>
-                            </div>
-                        </div>
-                    </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single__program">
+                                    <div class="program_thumb">
+                                        <img src="content/images/program/3.png" alt="">
+                                    </div>
+                                    <div class="program__content">
+                                        <span>Agriculture</span>
+                                        <h4>Bio engneering</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                        <a href="#" class="boxed-btn5">Apply NOw</a>
+                                    </div>
+                                </div>
+                            </div>-->
                 </div>
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -247,7 +176,8 @@
                             <div class="program__content">
                                 <span>Agriculture</span>
                                 <h4>Chemical engneering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut</p>
                                 <a href="#" class="boxed-btn5">Apply NOw</a>
                             </div>
                         </div>
@@ -260,7 +190,8 @@
                             <div class="program__content">
                                 <span>Agriculture</span>
                                 <h4>Mechanical engneering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut</p>
                                 <a href="#" class="boxed-btn5">Apply NOw</a>
                             </div>
                         </div>
@@ -273,7 +204,8 @@
                             <div class="program__content">
                                 <span>Agriculture</span>
                                 <h4>Bio engneering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut</p>
                                 <a href="#" class="boxed-btn5">Apply NOw</a>
                             </div>
                         </div>
@@ -290,7 +222,8 @@
                             <div class="program__content">
                                 <span>Agriculture</span>
                                 <h4>Chemical engneering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut</p>
                                 <a href="#" class="boxed-btn5">Apply NOw</a>
                             </div>
                         </div>
@@ -303,7 +236,8 @@
                             <div class="program__content">
                                 <span>Agriculture</span>
                                 <h4>Mechanical engneering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut</p>
                                 <a href="#" class="boxed-btn5">Apply NOw</a>
                             </div>
                         </div>
@@ -316,7 +250,8 @@
                             <div class="program__content">
                                 <span>Agriculture</span>
                                 <h4>Bio engneering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut</p>
                                 <a href="#" class="boxed-btn5">Apply NOw</a>
                             </div>
                         </div>
@@ -333,7 +268,8 @@
                             <div class="program__content">
                                 <span>Agriculture</span>
                                 <h4>Chemical engneering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut</p>
                                 <a href="#" class="boxed-btn5">Apply NOw</a>
                             </div>
                         </div>
@@ -346,7 +282,8 @@
                             <div class="program__content">
                                 <span>Agriculture</span>
                                 <h4>Mechanical engneering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut</p>
                                 <a href="#" class="boxed-btn5">Apply NOw</a>
                             </div>
                         </div>
@@ -359,7 +296,8 @@
                             <div class="program__content">
                                 <span>Agriculture</span>
                                 <h4>Bio engneering</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut</p>
                                 <a href="#" class="boxed-btn5">Apply NOw</a>
                             </div>
                         </div>
@@ -388,25 +326,18 @@
                     <div class="coures_info">
                         <div class="section_title white_text">
                             <h3>Latest Courses</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <br> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim <br> veniam, quis nostrud exercitation.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod <br> tempor
+                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim <br> veniam, quis nostrud
+                                exercitation.</p>
                         </div>
-                        <div class="coures_wrap d-flex">
-                            <div class="single_wrap">
+                        <div class="coures_wrap d-flex" >
+                            <div class="single_wrap" ng-repeat="recentcourse in vm.recentCourses">
                                 <div class="icon">
                                     <i class="flaticon-lab"></i>
                                 </div>
-                                <h4>Bachelor of <br>
-                                    Graphic Design</h4>
-                                <p>Lorem ipsum dolor sit amet, sectetur adipiscing elit, sed do eiusmod tpor incididunt ut piscing vcs.</p>
-                                <a href="#" class="boxed-btn5">Apply NOw</a>
-                            </div>
-                            <div class="single_wrap">
-                                <div class="icon">
-                                    <i class="flaticon-lab"></i>
-                                </div>
-                                <h4>Bachelor of <br>
-                                    Graphic Design</h4>
-                                <p>Lorem ipsum dolor sit amet, sectetur adipiscing elit, sed do eiusmod tpor incididunt ut piscing vcs.</p>
+                                <h4>{{recentcourse.name}} <br>
+                                    </h4>
+                                <p>{{recentcourse.description}}&nbsp;&nbsp;&nbsp;&nbsp;</p>
                                 <a href="#" class="boxed-btn5">Apply NOw</a>
                             </div>
                         </div>
@@ -425,7 +356,8 @@
             <div class="col-lg-8 col-md-10">
                 <div class="section_title text-center mb-70">
                     <h3 class="mb-45">Recent Event</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
                 </div>
             </div>
         </div>
@@ -440,7 +372,9 @@
                         <a href="event_details.html">
                             <h4>How to speake like a nativespeaker?</h4>
                         </a>
-                        <p><span> <i class="flaticon-clock"></i> 10:30 pm</span> <span> <i class="flaticon-calendar"></i> 21Nov 2020 </span> <span> <i class="flaticon-placeholder"></i> AH Oditoriam</span> </p>
+                        <p><span> <i class="flaticon-clock"></i> 10:30 pm</span> <span> <i
+                            class="flaticon-calendar"></i> 21Nov 2020 </span> <span> <i
+                            class="flaticon-placeholder"></i> AH Oditoriam</span></p>
                     </div>
                 </div>
                 <div class="single_event d-flex align-items-center">
@@ -452,7 +386,9 @@
                         <a href="event_details.html">
                             <h4>How to speake like a nativespeaker?</h4>
                         </a>
-                        <p><span> <i class="flaticon-clock"></i> 10:30 pm</span> <span> <i class="flaticon-calendar"></i> 21Nov 2020 </span> <span> <i class="flaticon-placeholder"></i> AH Oditoriam</span> </p>
+                        <p><span> <i class="flaticon-clock"></i> 10:30 pm</span> <span> <i
+                            class="flaticon-calendar"></i> 21Nov 2020 </span> <span> <i
+                            class="flaticon-placeholder"></i> AH Oditoriam</span></p>
                     </div>
                 </div>
                 <div class="single_event d-flex align-items-center">
@@ -464,7 +400,9 @@
                         <a href="event_details.html">
                             <h4>How to speake like a nativespeaker?</h4>
                         </a>
-                        <p><span> <i class="flaticon-clock"></i> 10:30 pm</span> <span> <i class="flaticon-calendar"></i> 21Nov 2020 </span> <span> <i class="flaticon-placeholder"></i> AH Oditoriam</span> </p>
+                        <p><span> <i class="flaticon-clock"></i> 10:30 pm</span> <span> <i
+                            class="flaticon-calendar"></i> 21Nov 2020 </span> <span> <i
+                            class="flaticon-placeholder"></i> AH Oditoriam</span></p>
                     </div>
                 </div>
             </div>
@@ -485,22 +423,22 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="single_input">
-                                        <input type="text" placeholder="First Name" >
+                                        <input type="text" placeholder="First Name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single_input">
-                                        <input type="text" placeholder="Last Name" >
+                                        <input type="text" placeholder="Last Name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single_input">
-                                        <input type="text" placeholder="Phone Number" >
+                                        <input type="text" placeholder="Phone Number">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single_input">
-                                        <input type="text" placeholder="Email Address" >
+                                        <input type="text" placeholder="Email Address">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -531,7 +469,8 @@
             <div class="col-lg-8 col-md-10">
                 <div class="section_title text-center mb-70">
                     <h3 class="mb-45">Recent News</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
                 </div>
             </div>
         </div>
@@ -549,7 +488,8 @@
                             <h4>Those Other College Expenses You
                                 Aren’t Thinking About</h4>
                         </a>
-                        <p class="d-flex align-items-center"> <span><i class="flaticon-calendar-1"></i> May 10, 2020</span>
+                        <p class="d-flex align-items-center"><span><i
+                            class="flaticon-calendar-1"></i> May 10, 2020</span>
 
                             <span> <i class="flaticon-comment"></i> 01 comments</span>
                         </p>
@@ -569,7 +509,8 @@
                             <h4>Those Other College Expenses You
                                 Aren’t Thinking About</h4>
                         </a>
-                        <p class="d-flex align-items-center"> <span><i class="flaticon-calendar-1"></i> May 10, 2020</span>
+                        <p class="d-flex align-items-center"><span><i
+                            class="flaticon-calendar-1"></i> May 10, 2020</span>
 
                             <span> <i class="flaticon-comment"></i> 01 comments</span>
                         </p>

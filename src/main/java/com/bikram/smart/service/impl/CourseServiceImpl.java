@@ -8,9 +8,15 @@ import com.bikram.smart.service.mapper.CourseMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -82,5 +88,12 @@ public class CourseServiceImpl implements CourseService{
     public void delete(Long id) {
         log.debug("Request to delete Course : {}", id);
         courseRepository.delete(id);
+    }
+
+    @Override
+    public Page<CourseDTO> getRecentCourses(Pageable pageable1) {
+        Pageable pageable = new PageRequest(0,2);
+        return  courseRepository.findTop3ByCreatedDate(pageable)
+            .map(courseMapper::toDto);
     }
 }

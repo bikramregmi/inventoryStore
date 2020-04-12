@@ -13,8 +13,6 @@ public class SubjectDTO implements Serializable {
 
     private Long id;
 
-    private Integer subject_id;
-
     private String name;
 
     private String description;
@@ -29,14 +27,6 @@ public class SubjectDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getSubject_id() {
-        return subject_id;
-    }
-
-    public void setSubject_id(Integer subject_id) {
-        this.subject_id = subject_id;
     }
 
     public String getName() {
@@ -96,7 +86,6 @@ public class SubjectDTO implements Serializable {
     public String toString() {
         return "SubjectDTO{" +
             "id=" + getId() +
-            ", subject_id='" + getSubject_id() + "'" +
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
             ", image='" + getImage() + "'" +

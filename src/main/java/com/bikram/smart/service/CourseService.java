@@ -4,6 +4,8 @@ import com.bikram.smart.service.dto.CourseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * Service Interface for managing Course.
  */
@@ -39,4 +41,6 @@ public interface CourseService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    Page<CourseDTO> getRecentCourses(Pageable pageable);
 }

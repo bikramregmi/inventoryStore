@@ -14,10 +14,10 @@
                     ng-model="vm.program.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="smartWebApp.program.image" for="field_image">Image</label>
-            <input type="text" class="form-control" name="image" id="field_image"
-                    ng-model="vm.program.image"
-                    />
+            <label class="control-label" data-translate="smartWebApp.program.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                   ng-model="vm.program.name"
+            />
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="smartWebApp.program.description" for="field_description">Description</label>
@@ -26,15 +26,14 @@
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="smartWebApp.program.name" for="field_name">Name</label>
-            <input type="text" class="form-control" name="name" id="field_name"
-                    ng-model="vm.program.name"
-                    />
+            <label class="control-label" data-translate="smartWebApp.program.image" for="field_image">Image</label>
+            <input type="text" class="form-control" name="image" id="field_image"
+                   ng-model="vm.program.image"
+            />
         </div>
-
         <div class="form-group">
             <label data-translate="smartWebApp.program.course" for="field_course">Course</label>
-            <select class="form-control" id="field_course" multiple name="course" ng-model="vm.program.courses" ng-options="course as course.id for course in vm.courses track by course.id"></select>
+            <select class="form-control" id="field_course" multiple name="course" ng-model="vm.program.courses" ng-options="course as course.name for course in vm.courses track by course.id"></select>
         </div>
     </div>
     <div class="modal-footer">

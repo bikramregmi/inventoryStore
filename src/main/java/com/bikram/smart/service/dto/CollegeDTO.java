@@ -25,6 +25,10 @@ public class CollegeDTO implements Serializable {
 
     private Long contactId;
 
+    private String addressName;
+
+    private String contactName;
+
     private Set<ProgramDTO> programs = new HashSet<>();
 
     public Long getId() {
@@ -89,6 +93,22 @@ public class CollegeDTO implements Serializable {
 
     public void setPrograms(Set<ProgramDTO> programs) {
         this.programs = programs;
+    }
+
+    public String getAddressName() {
+        return addressName;
+    }
+
+    public void setAddressName(String addressName) {
+        this.addressName = addressName;
+    }
+
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
     }
 
     @Override

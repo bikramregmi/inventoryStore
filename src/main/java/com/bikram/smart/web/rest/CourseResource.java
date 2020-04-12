@@ -95,7 +95,6 @@ public class CourseResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-
     /**
      * GET  /courses/:id : get the "id" course.
      *
@@ -122,5 +121,17 @@ public class CourseResource {
         log.debug("REST request to delete Course : {}", id);
         courseService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+
+    /**
+     * Get Top Five Recent Courses
+     */
+    @GetMapping("/courses/recent")
+    @Timed
+    public ResponseEntity<List<CourseDTO>> getRecentCourses(@ApiParam Pageable pageable) {
+        log.debug("REST request to get a page of Recent Courses");
+        Page<CourseDTO> page = courseService.getRecentCourses(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses/recent");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 }

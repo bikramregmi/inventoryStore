@@ -15,6 +15,8 @@ public class CourseDTO implements Serializable {
 
     private String description;
 
+    private String stream;
+
     private String image;
 
     public Long getId() {
@@ -39,6 +41,14 @@ public class CourseDTO implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStream() {
+        return stream;
+    }
+
+    public void setStream(String stream) {
+        this.stream = stream;
     }
 
     public String getImage() {

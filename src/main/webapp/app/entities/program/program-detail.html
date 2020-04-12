@@ -19,7 +19,7 @@
         <dt><span data-translate="smartWebApp.program.course">Course</span></dt>
         <dd>
             <span ng-repeat="course in vm.program.courses">
-                <a ui-sref="course-detail({id: course.id})">{{course.id}}</a>{{$last ? '' : ', '}}
+                <a ui-sref="course-detail({id: course.id})">{{course.name}}</a>{{$last ? '' : ', '}}
             </span>
         </dd>
     </dl>

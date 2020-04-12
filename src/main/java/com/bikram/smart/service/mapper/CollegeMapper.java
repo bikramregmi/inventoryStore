@@ -12,9 +12,12 @@ import org.mapstruct.*;
 public interface CollegeMapper extends EntityMapper <CollegeDTO, College> {
 
     @Mapping(source = "address.id", target = "addressId")
-
     @Mapping(source = "contact.id", target = "contactId")
-    CollegeDTO toDto(College college); 
+    @Mapping(source = "address.city", target = "addressName")
+    @Mapping(source = "contact.mobileNumber", target = "contactName")
+    CollegeDTO toDto(College college);
+
+
 
     @Mapping(source = "addressId", target = "address")
 

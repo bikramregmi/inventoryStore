@@ -95,7 +95,7 @@ public class SubjectResourceIntTest {
      */
     public static Subject createEntity(EntityManager em) {
         Subject subject = new Subject()
-            .subject_id(DEFAULT_SUBJECT_ID)
+//            .subject_id(DEFAULT_SUBJECT_ID)
             .name(DEFAULT_NAME)
             .description(DEFAULT_DESCRIPTION)
             .image(DEFAULT_IMAGE);
@@ -123,7 +123,7 @@ public class SubjectResourceIntTest {
         List<Subject> subjectList = subjectRepository.findAll();
         assertThat(subjectList).hasSize(databaseSizeBeforeCreate + 1);
         Subject testSubject = subjectList.get(subjectList.size() - 1);
-        assertThat(testSubject.getSubject_id()).isEqualTo(DEFAULT_SUBJECT_ID);
+//        assertThat(testSubject.getSubject_id()).isEqualTo(DEFAULT_SUBJECT_ID);
         assertThat(testSubject.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testSubject.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testSubject.getImage()).isEqualTo(DEFAULT_IMAGE);
@@ -160,7 +160,6 @@ public class SubjectResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(subject.getId().intValue())))
-            .andExpect(jsonPath("$.[*].subject_id").value(hasItem(DEFAULT_SUBJECT_ID)))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].image").value(hasItem(DEFAULT_IMAGE.toString())));
@@ -177,7 +176,6 @@ public class SubjectResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(subject.getId().intValue()))
-            .andExpect(jsonPath("$.subject_id").value(DEFAULT_SUBJECT_ID))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.image").value(DEFAULT_IMAGE.toString()));
@@ -201,7 +199,7 @@ public class SubjectResourceIntTest {
         // Update the subject
         Subject updatedSubject = subjectRepository.findOne(subject.getId());
         updatedSubject
-            .subject_id(UPDATED_SUBJECT_ID)
+//            .subject_id(UPDATED_SUBJECT_ID)
             .name(UPDATED_NAME)
             .description(UPDATED_DESCRIPTION)
             .image(UPDATED_IMAGE);
@@ -216,7 +214,6 @@ public class SubjectResourceIntTest {
         List<Subject> subjectList = subjectRepository.findAll();
         assertThat(subjectList).hasSize(databaseSizeBeforeUpdate);
         Subject testSubject = subjectList.get(subjectList.size() - 1);
-        assertThat(testSubject.getSubject_id()).isEqualTo(UPDATED_SUBJECT_ID);
         assertThat(testSubject.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testSubject.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testSubject.getImage()).isEqualTo(UPDATED_IMAGE);

@@ -14,12 +14,6 @@
                     ng-model="vm.subject.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="smartWebApp.subject.subject_id" for="field_subject_id">Subject Id</label>
-            <input type="number" class="form-control" name="subject_id" id="field_subject_id"
-                    ng-model="vm.subject.subject_id"
-                    />
-        </div>
-        <div class="form-group">
             <label class="control-label" data-translate="smartWebApp.subject.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
                     ng-model="vm.subject.name"
@@ -40,7 +34,7 @@
 
         <div class="form-group">
             <label data-translate="smartWebApp.subject.course" for="field_course">Course</label>
-            <select class="form-control" id="field_course" multiple name="course" ng-model="vm.subject.courses" ng-options="course as course.id for course in vm.courses track by course.id"></select>
+            <select class="form-control" id="field_course" multiple name="course" ng-model="vm.subject.courses" ng-options="course as course.name for course in vm.courses track by course.id"></select>
         </div>
     </div>
     <div class="modal-footer">
