@@ -3,8 +3,9 @@ package com.bikram.smart.service;
 import com.bikram.smart.service.dto.CourseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import java.io.IOException;
 
 /**
  * Service Interface for managing Course.
@@ -15,9 +16,10 @@ public interface CourseService {
      * Save a course.
      *
      * @param courseDTO the entity to save
+     * @param file
      * @return the persisted entity
      */
-    CourseDTO save(CourseDTO courseDTO);
+    CourseDTO save(CourseDTO courseDTO, MultipartFile file) throws IOException;
 
     /**
      *  Get all the courses.

@@ -2,7 +2,9 @@ package com.bikram.smart.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.Multipart;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;

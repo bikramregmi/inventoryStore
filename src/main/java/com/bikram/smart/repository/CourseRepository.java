@@ -17,6 +17,6 @@ import java.time.Instant;
 public interface CourseRepository extends JpaRepository<Course,Long> {
 
     @Query("select c from Course c order by c.createdDate DESC ")
-    Page<Course> findTop3ByCreatedDate( Pageable pageable);
+    Page<Course> findTop2ByCreatedDate( Pageable pageable);
 
 }

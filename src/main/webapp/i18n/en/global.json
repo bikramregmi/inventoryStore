@@ -13,6 +13,7 @@
                 "contact": "Contact",
                 "address": "Address",
                 "college": "College",
+                "content": "Content",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

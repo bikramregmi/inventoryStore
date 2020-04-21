@@ -1,12 +1,17 @@
 package com.bikram.smart.web.rest;
 
+import com.bikram.smart.config.ApplicationProperties;
+import com.bikram.smart.service.ImageViewService;
 import com.codahale.metrics.annotation.Timed;
 import com.bikram.smart.service.CourseService;
 import com.bikram.smart.web.rest.util.HeaderUtil;
 import com.bikram.smart.web.rest.util.PaginationUtil;
 import com.bikram.smart.service.dto.CourseDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
+import liquibase.util.StringUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -14,11 +19,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +48,14 @@ public class CourseResource {
 
     private final CourseService courseService;
 
-    public CourseResource(CourseService courseService) {
+    private final ApplicationProperties applicationProperties;
+
+    private final ImageViewService imageViewService;
+
+    public CourseResource(CourseService courseService, ApplicationProperties applicationProperties, ImageViewService imageViewService) {
         this.courseService = courseService;
+        this.applicationProperties = applicationProperties;
+        this.imageViewService = imageViewService;
     }
 
     /**
@@ -48,12 +67,18 @@ public class CourseResource {
      */
     @PostMapping("/courses")
     @Timed
-    public ResponseEntity<CourseDTO> createCourse(@RequestBody CourseDTO courseDTO) throws URISyntaxException {
+    public ResponseEntity<CourseDTO> createCourse(@RequestParam(value = "file" ,required = false) MultipartFile file, @RequestParam(value = "course", required = false) String courseDTO) throws URISyntaxException, IOException {
         log.debug("REST request to save Course : {}", courseDTO);
-        if (courseDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new course cannot already have an ID")).body(null);
+        if (courseDTO == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "Null", "A new course cannot be null")).body(null);
         }
-        CourseDTO result = courseService.save(courseDTO);
+        CourseDTO result;
+        ObjectMapper mapper = new ObjectMapper();
+        CourseDTO course = mapper.readValue(courseDTO, CourseDTO.class);
+       /* if (course.getId() != null) {
+            throw new BadRequestAlertException("A new Banner cannot already have an ID", ENTITY_NAME, "idexists");
+        }*/
+        result = courseService.save(course,file);
         return ResponseEntity.created(new URI("/api/courses/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -70,15 +95,15 @@ public class CourseResource {
      */
     @PutMapping("/courses")
     @Timed
-    public ResponseEntity<CourseDTO> updateCourse(@RequestBody CourseDTO courseDTO) throws URISyntaxException {
+    public ResponseEntity<CourseDTO> updateCourse(@RequestBody CourseDTO courseDTO) throws URISyntaxException, IOException {
         log.debug("REST request to update Course : {}", courseDTO);
-        if (courseDTO.getId() == null) {
+       /* if (courseDTO.getId() == null) {
             return createCourse(courseDTO);
-        }
-        CourseDTO result = courseService.save(courseDTO);
+        }*/
+//        CourseDTO result = courseService.save(courseDTO, file);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, courseDTO.getId().toString()))
-            .body(result);
+            .body(null);
     }
 
     /**
@@ -95,6 +120,7 @@ public class CourseResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+
     /**
      * GET  /courses/:id : get the "id" course.
      *
@@ -124,7 +150,7 @@ public class CourseResource {
     }
 
     /**
-     * Get Top Five Recent Courses
+     * Get Top Two Recent Courses
      */
     @GetMapping("/courses/recent")
     @Timed
@@ -133,5 +159,18 @@ public class CourseResource {
         Page<CourseDTO> page = courseService.getRecentCourses(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/courses/recent");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/view/course")
+    public void viewBannerImage(@RequestParam("fileName") String fileName, HttpServletResponse response, HttpServletRequest request) throws IOException {
+        if (!StringUtils.isEmpty(fileName)) {
+            fileName = URLDecoder.decode(fileName, "UTF-8");
+            File imagePath = new File(applicationProperties.getFileBasePath() + "/course/" + fileName);
+            try {
+                imageViewService.imageViewService(fileName, imagePath, response);
+            }catch(Exception e){
+                log.debug("Exception",e);
+            }
+        }
     }
 }

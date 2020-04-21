@@ -1,5 +1,6 @@
 package com.bikram.smart.service.impl;
 
+import com.bikram.smart.config.ApplicationProperties;
 import com.bikram.smart.service.CourseService;
 import com.bikram.smart.domain.Course;
 import com.bikram.smart.repository.CourseRepository;
@@ -12,11 +13,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
-import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
 
 /**
@@ -32,20 +32,30 @@ public class CourseServiceImpl implements CourseService{
 
     private final CourseMapper courseMapper;
 
-    public CourseServiceImpl(CourseRepository courseRepository, CourseMapper courseMapper) {
+    private final ApplicationProperties applicationProperties;
+
+
+    public CourseServiceImpl(CourseRepository courseRepository, CourseMapper courseMapper, ApplicationProperties applicationProperties) {
         this.courseRepository = courseRepository;
         this.courseMapper = courseMapper;
+        this.applicationProperties = applicationProperties;
     }
 
     /**
      * Save a course.
      *
      * @param courseDTO the entity to save
+     * @param file
      * @return the persisted entity
      */
     @Override
-    public CourseDTO save(CourseDTO courseDTO) {
+    public CourseDTO save(CourseDTO courseDTO, MultipartFile file) throws IOException {
         log.debug("Request to save Course : {}", courseDTO);
+        String courseImagePath;
+        if(file!=null) {
+            courseImagePath = getImagePath(file);
+            courseDTO.setImage(courseImagePath);
+        }
         Course course = courseMapper.toEntity(courseDTO);
         course = courseRepository.save(course);
         return courseMapper.toDto(course);
@@ -93,7 +103,25 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public Page<CourseDTO> getRecentCourses(Pageable pageable1) {
         Pageable pageable = new PageRequest(0,2);
-        return  courseRepository.findTop3ByCreatedDate(pageable)
+        return  courseRepository.findTop2ByCreatedDate(pageable)
             .map(courseMapper::toDto);
+    }
+
+
+    private String getImagePath(MultipartFile file) throws IOException {
+        String basePath = applicationProperties.getFileBasePath();
+        createDirectory(basePath + "/course/");
+        String uniqueName = String.valueOf(System.currentTimeMillis());
+        File imgFile = new File(basePath + "/course/" + uniqueName + file.getOriginalFilename());
+        file.transferTo(imgFile);
+        return uniqueName+file.getOriginalFilename();
+    }
+
+    private void createDirectory(String basePath) {
+        File dir = new File(basePath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
     }
 }

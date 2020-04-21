@@ -80,7 +80,7 @@ public class CourseResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        CourseResource courseResource = new CourseResource(courseService);
+        CourseResource courseResource = new CourseResource(courseService, applicationProperties, imageViewService);
         this.restCourseMockMvc = MockMvcBuilders.standaloneSetup(courseResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

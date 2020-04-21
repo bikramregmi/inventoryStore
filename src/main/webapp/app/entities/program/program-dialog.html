@@ -26,10 +26,8 @@
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="smartWebApp.program.image" for="field_image">Image</label>
-            <input type="text" class="form-control" name="image" id="field_image"
-                   ng-model="vm.program.image"
-            />
+            <label class="control-label" data-translate="smartWebApp.program.image" for="file">Image</label>
+            <input type="file" class="custom-file-input" id="file" file-model="vm.file" accept="image/x-png,image/jpeg,image/jpg">
         </div>
         <div class="form-group">
             <label data-translate="smartWebApp.program.course" for="field_course">Course</label>

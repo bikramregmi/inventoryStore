@@ -1,0 +1,38 @@
+<div>
+    <h2><span data-translate="smartWebApp.content.detail.title">Content</span> {{vm.content.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="smartWebApp.content.title">Title</span></dt>
+        <dd>
+            <span>{{vm.content.title}}</span>
+        </dd>
+        <dt><span data-translate="smartWebApp.content.description">Description</span></dt>
+        <dd>
+            <span>{{vm.content.description}}</span>
+        </dd>
+        <dt><span data-translate="smartWebApp.content.contentType">Content Type</span></dt>
+        <dd>
+            <span>{{vm.content.contentType}}</span>
+        </dd>
+        <dt><span data-translate="smartWebApp.content.image">Image</span></dt>
+        <dd>
+            <img src="/api/view/content?fileName={{vm.content.image}}" alt=" ">
+        </dd>
+        <dt><span data-translate="smartWebApp.content.college">College</span></dt>
+        <dd>
+            <a ui-sref="college-detail({id:vm.content.collegeId})">{{vm.content.collegeTitle}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="content-detail.edit({id:vm.content.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

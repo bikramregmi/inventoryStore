@@ -157,3 +157,5 @@ jhipster:
 # ===================================================================
 
 application:
+    file-basePath: /opt/install/smartWeb/pictures/
+

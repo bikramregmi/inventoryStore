@@ -11,9 +11,11 @@
     <include file="classpath:config/liquibase/changelog/20200406034218_added_entity_Contact.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20200406034921_added_entity_Address.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20200406035421_added_entity_College.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20200412042443_added_entity_Content.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20200406032519_added_entity_constraints_Subject.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20200406033523_added_entity_constraints_Program.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20200406035421_added_entity_constraints_College.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20200412042443_added_entity_constraints_Content.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

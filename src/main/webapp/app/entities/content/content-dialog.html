@@ -1,0 +1,59 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myContentLabel" data-translate="smartWebApp.content.home.createOrEditLabel">Create or edit a Content</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.content.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.content.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="smartWebApp.content.title" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                    ng-model="vm.content.title"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="smartWebApp.content.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="vm.content.description"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="smartWebApp.content.contentType" for="field_contentType">Content Type</label>
+            <select class="form-control" name="contentType" ng-model="vm.content.contentType" id="field_contentType">
+                <option value="News" data-translate="smartWebApp.ContentType.News">News</option>
+                <option value="Events" data-translate="smartWebApp.ContentType.Events">Events</option>
+                <option value="Calender" data-translate="smartWebApp.ContentType.Calender">Calender</option>
+                <option value="Banner" data-translate="smartWebApp.ContentType.Banner">Banner</option>
+                <option value="Gallery" data-translate="smartWebApp.ContentType.Gallery">Gallery</option>
+                <option value="Blog" data-translate="smartWebApp.ContentType.Blog">Blog</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="smartWebApp.content.image" for="file">Image</label>
+            <input type="file" class="custom-file-input" id="file" file-model="vm.file" accept="image/x-png,image/jpeg,image/jpg">
+        </div>
+
+        <div class="form-group">
+            <label data-translate="smartWebApp.content.college" for="field_college">College</label>
+            <select class="form-control" id="field_college" name="college" ng-model="vm.content.collegeId" ng-options="college.id as college.name for college in vm.colleges"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

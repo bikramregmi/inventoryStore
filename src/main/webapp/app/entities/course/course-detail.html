@@ -1,4 +1,3 @@
-
 <div>
     <h2><span data-translate="smartWebApp.course.detail.title">Course</span> {{vm.course.id}}</h2>
     <hr>
@@ -14,7 +13,8 @@
         </dd>
         <dt><span data-translate="smartWebApp.course.image">Image</span></dt>
         <dd>
-            <span>{{vm.course.image}}</span>
+            <span><img style="width:50%;height:50%;" src="/api/view/course?fileName={{vm.course.image}}" alt="logo">
+            </span>
         </dd>
     </dl>
 

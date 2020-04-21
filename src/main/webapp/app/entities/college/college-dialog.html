@@ -20,16 +20,14 @@
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="smartWebApp.college.image" for="field_image">Image</label>
-            <input type="text" class="form-control" name="image" id="field_image"
-                    ng-model="vm.college.image"
-                    />
-        </div>
-        <div class="form-group">
             <label class="control-label" data-translate="smartWebApp.college.description" for="field_description">Description</label>
             <input type="text" class="form-control" name="description" id="field_description"
                     ng-model="vm.college.description"
                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="smartWebApp.college.image" for="file">Image</label>
+            <input type="file" class="custom-file-input" id="file" file-model="vm.file" accept="image/x-png,image/jpeg,image/jpg">
         </div>
         <div class="form-group">
             <label class="control-label" data-translate="smartWebApp.college.extraField" for="field_extraField">Extra Field</label>

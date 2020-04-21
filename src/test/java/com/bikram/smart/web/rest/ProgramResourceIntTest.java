@@ -77,7 +77,7 @@ public class ProgramResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        ProgramResource programResource = new ProgramResource(programService);
+        ProgramResource programResource = new ProgramResource(programService, applicationProperties, imageViewService);
         this.restProgramMockMvc = MockMvcBuilders.standaloneSetup(programResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

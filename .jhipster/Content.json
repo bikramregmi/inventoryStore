@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "college",
+            "otherEntityName": "college",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "title"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contentType",
+            "fieldType": "ContentType",
+            "fieldValues": "News,Events,Calender,Banner,Gallery,Blog"
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20200412042443",
+    "dto": "mapstruct",
+    "service": "serviceImpl",
+    "entityTableName": "content",
+    "pagination": "pagination"
+}

@@ -1,6 +1,7 @@
 package com.bikram.smart.service.dto;
 
 
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -18,6 +19,14 @@ public class CourseDTO implements Serializable {
     private String stream;
 
     private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public Long getId() {
         return id;
@@ -51,14 +60,6 @@ public class CourseDTO implements Serializable {
         this.stream = stream;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -83,10 +84,11 @@ public class CourseDTO implements Serializable {
     @Override
     public String toString() {
         return "CourseDTO{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", image='" + getImage() + "'" +
-            "}";
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", description='" + description + '\'' +
+            ", stream='" + stream + '\'' +
+            ", image='" + image + '\'' +
+            '}';
     }
 }

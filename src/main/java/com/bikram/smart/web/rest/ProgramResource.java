@@ -1,12 +1,16 @@
 package com.bikram.smart.web.rest;
 
+import com.bikram.smart.config.ApplicationProperties;
+import com.bikram.smart.service.ImageViewService;
 import com.codahale.metrics.annotation.Timed;
 import com.bikram.smart.service.ProgramService;
 import com.bikram.smart.web.rest.util.HeaderUtil;
 import com.bikram.smart.web.rest.util.PaginationUtil;
 import com.bikram.smart.service.dto.ProgramDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
+import liquibase.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -15,10 +19,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +45,14 @@ public class ProgramResource {
 
     private final ProgramService programService;
 
-    public ProgramResource(ProgramService programService) {
+    private final ApplicationProperties applicationProperties;
+
+    private final ImageViewService imageViewService;
+
+    public ProgramResource(ProgramService programService, ApplicationProperties applicationProperties, ImageViewService imageViewService) {
         this.programService = programService;
+        this.applicationProperties = applicationProperties;
+        this.imageViewService = imageViewService;
     }
 
     /**
@@ -48,12 +64,20 @@ public class ProgramResource {
      */
     @PostMapping("/programs")
     @Timed
-    public ResponseEntity<ProgramDTO> createProgram(@RequestBody ProgramDTO programDTO) throws URISyntaxException {
+    public ResponseEntity<ProgramDTO> createProgram(@RequestParam(value = "file" ,required = false)  MultipartFile file,@RequestParam(value = "program" ,required = false) String programDTO) throws URISyntaxException, IOException {
         log.debug("REST request to save Program : {}", programDTO);
-        if (programDTO.getId() != null) {
+        if (programDTO == null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new program cannot already have an ID")).body(null);
         }
-        ProgramDTO result = programService.save(programDTO);
+        ProgramDTO result;
+        ProgramDTO program = new ProgramDTO();
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            program = mapper.readValue(programDTO, ProgramDTO.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        result = programService.save(program,file);
         return ResponseEntity.created(new URI("/api/programs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -72,13 +96,13 @@ public class ProgramResource {
     @Timed
     public ResponseEntity<ProgramDTO> updateProgram(@RequestBody ProgramDTO programDTO) throws URISyntaxException {
         log.debug("REST request to update Program : {}", programDTO);
-        if (programDTO.getId() == null) {
+      /*  if (programDTO.getId() == null) {
             return createProgram(programDTO);
         }
-        ProgramDTO result = programService.save(programDTO);
+        ProgramDTO result = programService.save(programDTO);*/
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, programDTO.getId().toString()))
-            .body(result);
+            .body(null);
     }
 
     /**
@@ -122,5 +146,17 @@ public class ProgramResource {
         log.debug("REST request to delete Program : {}", id);
         programService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+    @GetMapping("/view/program")
+    public void viewBannerImage(@RequestParam("fileName") String fileName, HttpServletResponse response, HttpServletRequest request) throws IOException {
+        if (!StringUtils.isEmpty(fileName)) {
+            fileName = URLDecoder.decode(fileName, "UTF-8");
+            File imagePath = new File(applicationProperties.getFileBasePath() + "/program/" + fileName);
+           try {
+               imageViewService.imageViewService(fileName, imagePath, response);
+           }catch(Exception e){
+               log.debug("Exception",e);
+           }
+        }
     }
 }

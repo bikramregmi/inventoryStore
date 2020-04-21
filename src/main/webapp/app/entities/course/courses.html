@@ -29,8 +29,8 @@
                 <tr ng-repeat="course in vm.courses track by course.id">
                     <td><a ui-sref="course-detail({id:course.id})">{{course.id}}</a></td>
                     <td>{{course.name}}</td>
-                    <td>{{course.description}}</td>
-                    <td>{{course.image}}</td>
+                    <td>{{course.description}}</td>{{course}}
+                    <td><img style="width:50px;height:50px;" src="/api/view/course?fileName={{course.image}}" alt="logo"></td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

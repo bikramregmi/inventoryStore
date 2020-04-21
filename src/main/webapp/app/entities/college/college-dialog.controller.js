@@ -34,12 +34,17 @@
         }
 
         function save () {
+            vm.final = new FormData();
+            vm.final.append('file', vm.file);
+            console.log(vm.file);
+            vm.final.append('college', angular.toJson(vm.college, true));
+            College.save(vm.final, onSaveSuccess, onSaveError);
             vm.isSaving = true;
-            if (vm.college.id !== null) {
+            /*if (vm.college.id !== null) {
                 College.update(vm.college, onSaveSuccess, onSaveError);
             } else {
                 College.save(vm.college, onSaveSuccess, onSaveError);
-            }
+            }*/
         }
 
         function onSaveSuccess (result) {

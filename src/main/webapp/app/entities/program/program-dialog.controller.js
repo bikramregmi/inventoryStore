@@ -24,12 +24,17 @@
         }
 
         function save () {
+            vm.final = new FormData();
+            vm.final.append('file', vm.file);
+            console.log(vm.file);
+            vm.final.append('program', angular.toJson(vm.program, true));
+            Program.save(vm.final, onSaveSuccess, onSaveError);
             vm.isSaving = true;
-            if (vm.program.id !== null) {
+          /*  if (vm.program.id !== null) {
                 Program.update(vm.program, onSaveSuccess, onSaveError);
             } else {
                 Program.save(vm.program, onSaveSuccess, onSaveError);
-            }
+            }*/
         }
 
         function onSaveSuccess (result) {

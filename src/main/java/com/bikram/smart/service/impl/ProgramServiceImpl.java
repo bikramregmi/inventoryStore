@@ -1,5 +1,6 @@
 package com.bikram.smart.service.impl;
 
+import com.bikram.smart.config.ApplicationProperties;
 import com.bikram.smart.service.ProgramService;
 import com.bikram.smart.domain.Program;
 import com.bikram.smart.repository.ProgramRepository;
@@ -11,6 +12,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 
 /**
@@ -26,9 +31,12 @@ public class ProgramServiceImpl implements ProgramService{
 
     private final ProgramMapper programMapper;
 
-    public ProgramServiceImpl(ProgramRepository programRepository, ProgramMapper programMapper) {
+    private final ApplicationProperties applicationProperties;
+
+    public ProgramServiceImpl(ProgramRepository programRepository, ProgramMapper programMapper, ApplicationProperties applicationProperties) {
         this.programRepository = programRepository;
         this.programMapper = programMapper;
+        this.applicationProperties = applicationProperties;
     }
 
     /**
@@ -38,8 +46,13 @@ public class ProgramServiceImpl implements ProgramService{
      * @return the persisted entity
      */
     @Override
-    public ProgramDTO save(ProgramDTO programDTO) {
+    public ProgramDTO save(ProgramDTO programDTO, MultipartFile file) throws IOException {
         log.debug("Request to save Program : {}", programDTO);
+        String courseImagePath;
+        if(file!=null) {
+            courseImagePath = getImagePath(file);
+            programDTO.setImage(courseImagePath);
+        }
         Program program = programMapper.toEntity(programDTO);
         program = programRepository.save(program);
         return programMapper.toDto(program);
@@ -82,5 +95,21 @@ public class ProgramServiceImpl implements ProgramService{
     public void delete(Long id) {
         log.debug("Request to delete Program : {}", id);
         programRepository.delete(id);
+    }
+    private String getImagePath(MultipartFile file) throws IOException {
+        String basePath = applicationProperties.getFileBasePath();
+        createDirectory(basePath + "/program/");
+        String uniqueName = String.valueOf(System.currentTimeMillis());
+        File imgFile = new File(basePath + "/program/" + uniqueName + file.getOriginalFilename());
+        file.transferTo(imgFile);
+        return uniqueName+file.getOriginalFilename();
+    }
+
+    private void createDirectory(String basePath) {
+        File dir = new File(basePath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+
     }
 }

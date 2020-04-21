@@ -1,0 +1,13 @@
+{
+    "smartWebApp": {
+        "ContentType" : {
+            "null": "",
+            "News": "News",
+            "Events": "Events",
+            "Calender": "Calender",
+            "Banner": "Banner",
+            "Gallery": "Gallery",
+            "Blog": "Blog"
+        }
+    }
+}

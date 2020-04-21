@@ -196,6 +196,7 @@ dependencies {
     compile ("io.springfox:springfox-swagger2:${springfox_version}") {
         exclude module: 'mapstruct'
     }
+    compile group: 'org.zalando', name: 'problem', version: '0.4.0'
     compile "io.springfox:springfox-bean-validators:${springfox_version}"
     compile "mysql:mysql-connector-java"
     compile "org.mapstruct:mapstruct-jdk8:${mapstruct_version}"

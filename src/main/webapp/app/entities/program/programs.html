@@ -40,7 +40,8 @@
                     <a ui-sref="course-detail({id: course.id})">{{course.name}}</a>{{$last ? '' : ', '}}
                     </span>
                 </td>
-                <td>{{program.image}}</td>
+                <td><img src="/api/view/program?fileName={{program.image}}" alt=" ">
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
