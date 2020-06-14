@@ -36,8 +36,8 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/smartWeb?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password: TMKdbroot@123
-        hikari:
+        password:
+            hikari:
             data-source-properties:
                 cachePrepStmts: true
                 prepStmtCacheSize: 250
@@ -93,7 +93,7 @@ liquibase:
 #        keyAlias: smartWeb
 # ===================================================================
 server:
-    port: 8080
+    port: 8090
 
 # ===================================================================
 # JHipster specific properties
